@@ -8,19 +8,32 @@ package com.seung.won;
  * To change this template use File | Settings | File Templates.
  */
 public class BowlingFrame {
-    int[] rollScore;
-    int currentRoll;
+    int[] droppedPins;
+    int rollCnt;
 
     public BowlingFrame() {
-        this.rollScore = new int[2];
-        currentRoll = 0;
+        this.droppedPins = new int[2];
+        rollCnt = 0;
     }
     public void roll(int pins) {
-        this.rollScore[currentRoll] = pins;
-        currentRoll++;
+        this.droppedPins[rollCnt] = pins;
+        rollCnt++;
     }
 
     public int getScore() {
-        return rollScore[0] + rollScore[1];
+        return droppedPins[0] + droppedPins[1];
+    }
+
+    public FrameStatus getStatus() {
+        if (rollCnt == 2) {
+            if(droppedPins[0] + droppedPins[1])
+                return FrameStatus.SPARE;
+            else return FrameStatus.NORMAL;
+        }
+        else {
+            if(droppedPins[0] == 10)
+                return FrameStatus.STRIKE;
+            else return FrameStatus.NORMAL;
+        }
     }
 }

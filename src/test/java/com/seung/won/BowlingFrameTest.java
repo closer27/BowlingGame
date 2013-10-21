@@ -19,4 +19,13 @@ public class BowlingFrameTest {
 
         Assert.assertEquals(frame.getScore(), 10);
     }
+
+    @Test
+    public void isSpare() {
+        BowlingFrame frame = new BowlingFrame();
+        frame.roll(3);
+        frame.roll(7);
+
+        Assert.assertEquals(frame.getStatus(), FrameStatus.SPARE);
+    }
 }
