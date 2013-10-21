@@ -1,7 +1,7 @@
 package com.seung.won;
 
 /**
- * Created with IntelliJ IDEA.
+ * 볼링 게임 진행 클래스
  * User: seung-wongim
  * Date: 13. 10. 21.
  * Time: 오후 7:25
