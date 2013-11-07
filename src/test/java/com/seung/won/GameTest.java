@@ -31,4 +31,14 @@ public class GameTest {
 
         Assert.assertEquals(game.getCurrentScore(), 23);
     }
+
+    @Test
+    public void testStrikeFrame() {
+        Game game = new Game();
+        game.roll(10);
+        game.roll(2);
+        game.roll(4);
+
+        Assert.assertEquals(game.getCurrentScore(), 22);
+    }
 }
