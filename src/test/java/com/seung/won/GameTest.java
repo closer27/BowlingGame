@@ -14,41 +14,52 @@ import java.util.Random;
  */
 public class GameTest {
     @Test
-    public void testFirstFrame() {
+    public void testCheckScore() {
         Game game = new Game();
         game.getCurrentFrame().roll(9);
         game.getCurrentFrame().roll(1);
         game.addFrame();
-        game.getCurrentFrame().roll(8);
-        game.getCurrentFrame().roll(0);
-        game.addFrame();
-        game.getCurrentFrame().roll(10);
-        game.getCurrentFrame().roll(0);
-        game.addFrame();
-        game.getCurrentFrame().roll(10);
-        game.getCurrentFrame().roll(0);
-        game.addFrame();
-        game.getCurrentFrame().roll(8);
-        game.getCurrentFrame().roll(0);
-        game.addFrame();
-        game.getCurrentFrame().roll(10);
-        game.getCurrentFrame().roll(0);
-        game.addFrame();
-        game.getCurrentFrame().roll(8);
-        game.getCurrentFrame().roll(1);
-        game.addFrame();
-        game.getCurrentFrame().roll(9);
-        game.getCurrentFrame().roll(1);
-        game.addFrame();
-        game.getCurrentFrame().roll(8);
-        game.getCurrentFrame().roll(1);
-        game.addFrame();
-        game.getCurrentFrame().roll(10);
-        game.getCurrentFrame().roll(9);
-//        game.getCurrentFrame().roll(1);
+        game.getCurrentFrame().roll(4);
 
-        Assert.assertEquals(155, game.getCurrentScore());
+        Assert.assertEquals(14, game.getCurrentScore());
     }
+
+//    @Test
+//    public void testFirstFrame() {
+//        Game game = new Game();
+//        game.getCurrentFrame().roll(9);
+//        game.getCurrentFrame().roll(1);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(8);
+//        game.getCurrentFrame().roll(0);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(10);
+//        game.getCurrentFrame().roll(0);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(10);
+//        game.getCurrentFrame().roll(0);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(8);
+//        game.getCurrentFrame().roll(0);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(10);
+//        game.getCurrentFrame().roll(0);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(8);
+//        game.getCurrentFrame().roll(1);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(9);
+//        game.getCurrentFrame().roll(1);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(8);
+//        game.getCurrentFrame().roll(1);
+//        game.addFrame();
+//        game.getCurrentFrame().roll(10);
+//        game.getCurrentFrame().roll(9);
+////        game.getCurrentFrame().roll(1);
+//
+//        Assert.assertEquals(155, game.getCurrentScore());
+//    }
 
     @Test
     public void testAddNextFrame() {

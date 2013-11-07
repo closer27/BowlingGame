@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Game {
 
     ArrayList<BowlingFrame> frameArrayList;
+    ScoreManager scoreManager = new ScoreManager();
 
     public Game() {
         frameArrayList = new ArrayList<BowlingFrame>(); // create ArrayList of BowlingFrame.

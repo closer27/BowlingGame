@@ -8,4 +8,13 @@ package com.seung.won;
  * To change this template use File | Settings | File Templates.
  */
 public class ScoreManager {
+    int[] score;
+
+    public ScoreManager() {
+        score = new int[12];
+    }
+
+    public void printFrameScore(int frameNum) {
+        System.out.println("5");
+    }
 }

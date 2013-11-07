@@ -1,5 +1,8 @@
 package com.seung.won;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
  * Created with IntelliJ IDEA.
  * User: seung-wongim
@@ -8,4 +11,9 @@ package com.seung.won;
  * To change this template use File | Settings | File Templates.
  */
 public class ScoreManagerTest {
+    @Test
+    public void printScore() {
+        ScoreManager scoreManager = new ScoreManager();
+
+    }
 }
