@@ -43,7 +43,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.10</version>
                 <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
+                    <configLocation>intellij-java-google-style.xml</configLocation>
                 </configuration>
             </plugin>
         </plugins>
