@@ -12,24 +12,33 @@ import java.util.ArrayList;
 public class Game {
 
     ArrayList<BowlingFrame> frameArrayList;
-    private int currentFrame;
 
     public Game() {
-        frameArrayList = new ArrayList<BowlingFrame>();
-        currentFrame = 0;
+        frameArrayList = new ArrayList<BowlingFrame>(); // create ArrayList of BowlingFrame.
+        frameArrayList.add(new BowlingFrame()); // add the first frame of game automatically.
     }
-//
-//    public void roll(int pin) {
-//        droppedPins[currentRoll] = pin;
-//        currentRoll++;
-//    }
 
     public int getCurrentScore() {
+        // Method to get current score of the game.
         int score = 0;
 
         for (int i=0; i<frameArrayList.size(); i++) {
             score += frameArrayList.get(i).getScore();
         }
         return score;
+    }
+
+    public BowlingFrame getCurrentFrame() {
+        return frameArrayList.get(getCurrentFrameNumber());
+    }
+
+    public int getCurrentFrameNumber() {
+        // Method to get the number of the current frame.
+        return frameArrayList.size()-1;
+    }
+
+    public void addFrame() {
+        // Method to add the new frame of game.
+        frameArrayList.add(new BowlingFrame(frameArrayList.get(getCurrentFrameNumber()).getStatus()));
     }
 }

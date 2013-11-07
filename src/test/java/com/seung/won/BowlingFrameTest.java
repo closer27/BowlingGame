@@ -32,6 +32,11 @@ public class BowlingFrameTest {
     }
 
 //    @Test
+//    public void testTenthFrame() {
+//        BowlingFrame frame = new BowlingFrame();
+//    }
+
+//    @Test
 //    public void isSpare() {
 //        BowlingFrame frame = new BowlingFrame();
 //        frame.roll(3);
