@@ -28,17 +28,11 @@ public class ScoreManager {
 
         if (frameCnt != 0) {    // 최소 두번째 프레임 이상일 때
             int cleanCnt = frameCnt-1;   // 연속 스트라이크, 스페어 연산을 위한 카운터
-            while (frames[cleanCnt].getStatus() == FrameStatus.STRIKE ||
-                   frames[cleanCnt].getStatus() == FrameStatus.SPARE) {         // 현재 프레임의 직전 프레임이 스트라이크나 스페어일때 반복문 진입
-                if ((frames[cleanCnt].getStatus() == FrameStatus.STRIKE ||
-                    frames[cleanCnt].getStatus() == FrameStatus.SPARE) &&
-                    frames[frameCnt].getStatus() == FrameStatus.DOING) {        // 직전 프레임이 스트라이크나 스페어이면서 한번 던진 상태일 때
+            while (isCleanFrame(cleanCnt)) {         // 현재 프레임의 직전 프레임이 스트라이크나 스페어일때 반복문 진입
+                if (isCleanFrame(cleanCnt) && frames[frameCnt].getStatus() == FrameStatus.DOING) {        // 직전 프레임이 스트라이크나 스페어이면서 한번 던진 상태일 때
                     addFrameScore(cleanCnt, pNum);                              // 보너스 점수를 이전 프레임에 추가 합한다
                 }
-                else if (frames[cleanCnt].getStatus() == FrameStatus.STRIKE &&
-                        (frames[frameCnt].getStatus() == FrameStatus.OPEN ||
-                        frames[frameCnt].getStatus() == FrameStatus.STRIKE ||
-                        frames[frameCnt].getStatus() == FrameStatus.SPARE)) {   // 직전 프레임이 스트라이크이고 현재 프레임이 종료된 경우
+                else if (frames[cleanCnt].getStatus() == FrameStatus.STRIKE && isFrameEnded()) {   // 직전 프레임이 스트라이크이고 현재 프레임이 종료된 경우
                     addFrameScore(cleanCnt, pNum);                              // 두번째 롤의 점수도 보너스 점수로서 이전 프레임에 추가한다
                 }
 
@@ -47,11 +41,20 @@ public class ScoreManager {
             }
         }
 
-        if (frames[frameCnt].getStatus() == FrameStatus.OPEN
-            || frames[frameCnt].getStatus() == FrameStatus.SPARE
-            || frames[frameCnt].getStatus() == FrameStatus.STRIKE) {
+        if (isFrameEnded()) {
             frameCnt++; // increase frameCnt value if a frame is done.
         }
+    }
+
+    private boolean isCleanFrame(int frameNum) {
+        return frames[frameNum].getStatus() == FrameStatus.STRIKE ||
+               frames[frameNum].getStatus() == FrameStatus.SPARE;
+    }
+
+    private boolean isFrameEnded() {
+        return frames[frameCnt].getStatus() == FrameStatus.OPEN
+            || frames[frameCnt].getStatus() == FrameStatus.SPARE
+            || frames[frameCnt].getStatus() == FrameStatus.STRIKE;
     }
 
     public int getRemainPin() {
