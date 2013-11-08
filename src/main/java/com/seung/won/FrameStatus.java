@@ -8,5 +8,5 @@ package com.seung.won;
  * To change this template use File | Settings | File Templates.
  */
 public enum FrameStatus {
-    NORMAL, STRIKE, SPARE
+    READY, DOING, STRIKE, SPARE, OPEN
 }

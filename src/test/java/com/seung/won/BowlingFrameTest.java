@@ -13,43 +13,39 @@ import org.junit.Test;
 public class BowlingFrameTest {
     @Test
     public void testRoll() {
-        BowlingFrame frame = new BowlingFrame(FrameStatus.NORMAL);
+        BowlingFrame frame = new BowlingFrame();
         frame.roll(10);
 //        frame.roll(0);
 
-        Assert.assertEquals(frame.getScore(), 10);
+//        Assert.assertEquals(frame.getScore(), 10);
         Assert.assertEquals(frame.getStatus(), FrameStatus.STRIKE);
     }
 
     @Test
-    public void testStrike() {
-        BowlingFrame frame = new BowlingFrame(FrameStatus.STRIKE);
+    public void testSpare() {
+        BowlingFrame frame = new BowlingFrame();
         frame.roll(3);
         frame.roll(7);
 
-        Assert.assertEquals(frame.getScore(), 20);
+//        Assert.assertEquals(frame.getScore(), 20);
         Assert.assertEquals(frame.getStatus(), FrameStatus.SPARE);
     }
 
-//    @Test
-//    public void testTenthFrame() {
-//        BowlingFrame frame = new BowlingFrame();
-//    }
+    @Test
+    public void testStrike() {
+        BowlingFrame frame = new BowlingFrame();
+        frame.roll(10);
 
-//    @Test
-//    public void isSpare() {
-//        BowlingFrame frame = new BowlingFrame();
-//        frame.roll(3);
-//        frame.roll(7);
-//
-//        Assert.assertEquals(frame.getStatus(), FrameStatus.SPARE);
-//    }
-//
-//    @Test
-//    public void isStrike() {
-//        BowlingFrame frame = new BowlingFrame();
-//        frame.roll(10);
-//
-//        Assert.assertEquals(frame.getStatus(), FrameStatus.STRIKE);
-//    }
+        Assert.assertEquals(frame.getStatus(), FrameStatus.STRIKE);
+    }
+
+    @Test
+    public void testOpen() {
+        BowlingFrame frame = new BowlingFrame();
+        frame.roll(3);
+        frame.roll(4);
+
+        Assert.assertEquals(frame.getStatus(), FrameStatus.OPEN);
+    }
+
 }

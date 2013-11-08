@@ -10,49 +10,52 @@ package com.seung.won;
 public class BowlingFrame {
     int[] droppedPins;
     int rollCnt;
-    FrameStatus prevFrameStatus;
+    FrameStatus frameStatus;
 
     public BowlingFrame() {
-        prevFrameStatus = FrameStatus.NORMAL;
-
-        this.droppedPins = new int[2];
-        rollCnt = 0;
-    }
-
-    public BowlingFrame(FrameStatus frameStatus) {
-        prevFrameStatus = frameStatus;
-
         this.droppedPins = new int[2];
         rollCnt = 0;
     }
 
     public void roll(int pins) {
-        this.droppedPins[rollCnt] = pins;
-        rollCnt++;
-    }
-
-    public int getScore() {
-        if(prevFrameStatus.equals(FrameStatus.STRIKE)) {
-            return (droppedPins[0] + droppedPins[1]) * 2;
-        }
-        else if(prevFrameStatus.equals(FrameStatus.SPARE)) {
-            return droppedPins[0] * 2 + droppedPins[1] ;
+        if (rollCnt < 2) {
+            this.droppedPins[rollCnt] = pins;
+            rollCnt++;
         }
         else {
-            return droppedPins[0] + droppedPins[1];
+            System.out.println("Invalid Request : cannot roll 3 times in 1 frame");
         }
+
+        setStatus();
+    }
+
+//    public int getScore() {
+//        if(prevFrameStatus.equals(FrameStatus.STRIKE)) {
+//            return (droppedPins[0] + droppedPins[1]) * 2;
+//        }
+//        else if(prevFrameStatus.equals(FrameStatus.SPARE)) {
+//            return droppedPins[0] * 2 + droppedPins[1] ;
+//        }
+//        else {
+//            return droppedPins[0] + droppedPins[1];
+//        }
+//    }
+
+    private void setStatus() {
+        if (rollCnt == 2) {
+            if(droppedPins[0] + droppedPins[1] == 10)
+                frameStatus = FrameStatus.SPARE;
+            else frameStatus = FrameStatus.OPEN;
+        }
+        else if (rollCnt == 1) {
+            if(droppedPins[0] == 10)
+                frameStatus = FrameStatus.STRIKE;
+            else frameStatus = FrameStatus.DOING;
+        }
+        else frameStatus = FrameStatus.READY;
     }
 
     public FrameStatus getStatus() {
-        if (rollCnt == 2) {
-            if(droppedPins[0] + droppedPins[1] == 10)
-                return FrameStatus.SPARE;
-            else return FrameStatus.NORMAL;
-        }
-        else {
-            if(droppedPins[0] == 10)
-                return FrameStatus.STRIKE;
-            else return FrameStatus.NORMAL;
-        }
+        return frameStatus;
     }
 }
