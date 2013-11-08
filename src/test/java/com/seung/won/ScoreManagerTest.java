@@ -24,4 +24,43 @@ public class ScoreManagerTest {
         Assert.assertEquals(FrameStatus.DOING, scoreManager.getCurrentStatus());
         Assert.assertEquals(23, scoreManager.getTotalScore());   // 0번 프레임 점수
     }
+
+    @Test
+    public void StrikeStatusTest() {
+        ScoreManager scoreManager = new ScoreManager();
+
+        scoreManager.putNumberOfDroppedPin(10);
+        scoreManager.putNumberOfDroppedPin(2);
+
+        Assert.assertEquals(FrameStatus.DOING, scoreManager.getCurrentStatus());
+    }
+
+    @Test
+    public void doubleStrikeScore() {
+        ScoreManager scoreManager = new ScoreManager();
+
+        scoreManager.putNumberOfDroppedPin(10);
+        scoreManager.putNumberOfDroppedPin(10);
+        scoreManager.putNumberOfDroppedPin(2);
+
+        Assert.assertEquals(FrameStatus.DOING, scoreManager.getCurrentStatus());
+        Assert.assertEquals(22, scoreManager.getScore(0));
+        Assert.assertEquals(12, scoreManager.getScore(1));
+        Assert.assertEquals(34, scoreManager.getTotalScore());
+    }
+
+    @Test
+    public void strikeSpare() {
+        ScoreManager scoreManager = new ScoreManager();
+
+        scoreManager.putNumberOfDroppedPin(10);
+        scoreManager.putNumberOfDroppedPin(3);
+        scoreManager.putNumberOfDroppedPin(7);
+        scoreManager.putNumberOfDroppedPin(3);
+
+        Assert.assertEquals(FrameStatus.DOING, scoreManager.getCurrentStatus());
+        Assert.assertEquals(23, scoreManager.getScore(0));
+        Assert.assertEquals(13, scoreManager.getScore(1));
+        Assert.assertEquals(36, scoreManager.getTotalScore());
+    }
 }
