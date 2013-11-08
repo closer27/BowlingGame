@@ -1,6 +1,7 @@
 package com.seung.won;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * 볼링 게임 진행 클래스
@@ -10,36 +11,21 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class Game {
-
-    ArrayList<BowlingFrame> frameArrayList;
-    ScoreManager scoreManager = new ScoreManager();
+    ScoreManager scoreManager;
 
     public Game() {
-        frameArrayList = new ArrayList<BowlingFrame>(); // create ArrayList of BowlingFrame.
-        frameArrayList.add(new BowlingFrame()); // add the first frame of game automatically.
+        scoreManager = new ScoreManager();
     }
 
-    public int getCurrentScore() {
-        // Method to get current score of the game.
-        int score = 0;
+    public int roll() {
+        // second shot 던지기 전에 상태 확인해서 개수 판단
+        Random random = new Random(System.nanoTime());
+        int remainder = scoreManager.getRemainPin();
 
-        for (int i=0; i<frameArrayList.size(); i++) {
-            score += frameArrayList.get(i).getScore();
-        }
-        return score;
+        if (remainder == 10)
+            return random.nextInt(11);
+        else
+            return random.nextInt(remainder+1);
     }
 
-    public BowlingFrame getCurrentFrame() {
-        return frameArrayList.get(getCurrentFrameNumber());
-    }
-
-    public int getCurrentFrameNumber() {
-        // Method to get the number of the current frame.
-        return frameArrayList.size()-1;
-    }
-
-    public void addFrame() {
-        // Method to add the new frame of game.
-        frameArrayList.add(new BowlingFrame(frameArrayList.get(getCurrentFrameNumber()).getStatus()));
-    }
 }

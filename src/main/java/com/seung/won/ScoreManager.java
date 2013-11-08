@@ -8,20 +8,29 @@ package com.seung.won;
  * To change this template use File | Settings | File Templates.
  */
 public class ScoreManager {
-    int[] score;
+    BowlingFrame[] frames;
+    int frameCnt;
 
     public ScoreManager() {
-        score = new int[12];
+        this.frames = new BowlingFrame[12];
+        for (int i=0; i<frames.length; i++) {
+            frames[i] = new BowlingFrame();
+        }
+        frameCnt = 0;
     }
 
-    public void printFrameScore(int frameNum) {
-        System.out.println("5");
-        System.out.println("5");
-        System.out.println("5");
-        System.out.println("5");
-        System.out.println("5");
-        System.out.println("5");
-        System.out.println("5");
-        System.out.println("5");
+    public void putNumberOfDroppedPin(int pNum) {
+        frames[frameCnt].setDroppedPins(pNum);
+    }
+
+    public int getRemainPin() {
+        if (getCurrentStatus() == FrameStatus.DOING)
+            return 10 - frames[frameCnt].droppedPins[0];
+        else
+            return 10;
+    }
+
+    public FrameStatus getCurrentStatus() {
+        return frames[frameCnt].getStatus();
     }
 }

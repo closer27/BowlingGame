@@ -15,5 +15,9 @@ public class ScoreManagerTest {
     public void printScore() {
         ScoreManager scoreManager = new ScoreManager();
 
+        scoreManager.putNumberOfDroppedPin(4);
+        scoreManager.putNumberOfDroppedPin(5);
+
+        Assert.assertEquals(FrameStatus.OPEN, scoreManager.getCurrentStatus());
     }
 }
