@@ -16,8 +16,12 @@ public class ScoreManagerTest {
         ScoreManager scoreManager = new ScoreManager();
 
         scoreManager.putNumberOfDroppedPin(4);
+        scoreManager.putNumberOfDroppedPin(6);
         scoreManager.putNumberOfDroppedPin(5);
+        scoreManager.putNumberOfDroppedPin(3);
+        scoreManager.putNumberOfDroppedPin(2);
 
-        Assert.assertEquals(FrameStatus.OPEN, scoreManager.getCurrentStatus());
+        Assert.assertEquals(FrameStatus.DOING, scoreManager.getCurrentStatus());
+        Assert.assertEquals(23, scoreManager.getTotalScore());   // 0번 프레임 점수
     }
 }
